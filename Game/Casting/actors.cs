@@ -17,6 +17,8 @@ class actor {
     public Vector2 Position { get; set; } = new Vector2(0,0);
     public Vector2 Velocity { get; set; } = new Vector2(0,0);
 
+    virtual public void Draw(){
+    }
 
     // Movement
     public void Move() {

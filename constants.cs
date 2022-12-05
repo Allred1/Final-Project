@@ -1,121 +1,143 @@
+using Raylib_cs;
 
 
-public class constants {
+namespace FinalProject.Game
+{
 
-    // GENERAL GAME CONSTANTS
+    public class constants {
 
-    // Game
-    public static string GAME_NAME = "Space Invaders";
-    public static int FRAME_RATE = 60;
+        // GENERAL GAME CONSTANTS
 
-    
-    // Screen
-    public static int SCREEN_WIDTH = 1040;
-    public static int SCREEN_HEIGHT = 680;
-    public static int CENTER_X = SCREEN_WIDTH / 2;
-    public static int CENTER_Y = SCREEN_HEIGHT / 2;
+        // Game
+        public static string GAME_NAME = "Space Invaders";
+        public static int FRAME_RATE = 60;
 
-
-    // Field
-    public static int FIELD_TOP = 60;
-    public static int FIELD_BOTTOM = SCREEN_HEIGHT;
-    public static int FIELD_LEFT = 0;
-    public static int FIELD_RIGHT = SCREEN_WIDTH;
-
-    // Font
-    public static string FONT_FILE = "";
-    public static int FONT_SMALL = 32;
-    public static int FONT_LARGE = 48;
+        
+        // Screen
+        public static int SCREEN_WIDTH = 1040;
+        public static int SCREEN_HEIGHT = 680;
+        public static int CENTER_X = SCREEN_WIDTH / 2;
+        public static int CENTER_Y = SCREEN_HEIGHT / 2;
 
 
-    // Sound
-    public static string ARTILLERY_SOUND = "";
-    public static string MUSIC_SOUND = "";
-    public static string WELCOME_SOUND = "";
-    public static string OVER_SOUND = "";
+        // Field
+        public static int FIELD_TOP = 60;
+        public static int FIELD_BOTTOM = SCREEN_HEIGHT;
+        public static int FIELD_LEFT = 0;
+        public static int FIELD_RIGHT = SCREEN_WIDTH;
+
+        // Font
+        public static string FONT_FILE = "";
+        public static int FONT_SMALL = 32;
+        public static int FONT_LARGE = 48;
 
 
-    // Text
-    public static int ALIGN_CENTER = 0;
-    public static int ALIGN_LEFT = 1;
-    public static int ALIGN_RIGHT = 2;
+        // Sound
+        public static string ARTILLERY_SOUND = "";
+        public static string MUSIC_SOUND = "";
+        public static string WELCOME_SOUND = "";
+        public static string OVER_SOUND = "";
 
 
-    // Colors
-    public static Color BLACK = new Color(0,0,0);
-    WHITE = Color(255,255,255);
-
-    // Keys
-    LEFT = "left";
-    RIGHT = "right";
-    SPACE = "space";
-    ENTER = "enter";
-    PAUSE = "p";
-
-    // Scenes
-    NEW_GAME = 0;
-    TRY_AGAIN = 1;
-    NEXT_LEVEL = 2;
-    IN_PLAY = 3;
-    GAME_OVER = 4;
-
-    // Levels
-    LEVEL_FILE = "";
-    BASE_LEVELS = 5;
+        // Text
+        public static int ALIGN_CENTER = 0;
+        public static int ALIGN_LEFT = 1;
+        public static int ALIGN_RIGHT = 2;
 
 
+        // Colors
+        public static Color BLACK = Color.BLACK;
+        public static Color WHITE = Color.WHITE;
 
-    // SCRIPTING CONSTANTS
+        // Keys
+        public static string LEFT = "left";
+        public static string RIGHT = "right";
+        public static string SPACE = "space";
+        public static string ENTER = "enter";
+        public static string PAUSE = "p";
 
-    // Phases
-    INITIALIZE = 0;
-    LOAD = 1;
-    INPUT = 2;
-    UPDATE = 3;
-    OUTPUT = 4;
-    UNLOAD = 5; 
-    RELEASE = 6;
+        // Scenes
+        public static int NEW_GAME = 0;
+        public static int TRY_AGAIN = 1;
+        public static int NEXT_LEVEL = 2;
+        public static int IN_PLAY = 3;
+        public static int GAME_OVER = 4;
+
+        // Levels
+        public static string LEVEL_FILE = "";
+        public static int BASE_LEVELS = 5;
 
 
 
-    // CASTING CONSTANTS
+        // SCRIPTING CONSTANTS
 
-    // Stats
-    STATS_GROUP = "";
-    DEFAULT_LIVES = 3;
-    MAXIMUM_LIVES = 5;
-
-    // HUD
-
-
-    // Ammunition
-    AMMUNITION_GROUP = "";
-    AMMUNITION_IMAGE = "";
-    AMMUNITION_WIDTH = 28;
-    AMMUNITION_HEIGHT = 28;
-    AMMUNITION_VELOCITY = 8;
-
-    // Artillery
-    ARTILLERY_GROUP = "";
-    ARTILLERY_IMAGE = "";
-    ARTILLERY_WIDTH = 10;
-    ARTILLERY_HEIGHT = 10;
-    ARTILLERY_RATE = 6;
-    ARTILLERY_VELOCITY = 7;
+        // Phases
+        public static int INITIALIZE = 0;
+        public static int LOAD = 1;
+        public static int INPUT = 2;
+        public static int UPDATE = 3;
+        public static int OUTPUT = 4;
+        public static int UNLOAD = 5; 
+        public static int RELEASE = 6;
 
 
-    // Aliens
-    ALIEN_GROUP = "";
-    ALIEN_IMAGES = {};
-    ALIEN_WIDTH = 30;
-    ALIEN_HEIGHT = 30;
-    ALIEN_DELAY = 0.5;
-    ALIEN_RATE = 4;
-    ALIEN_POINTS = ;
+
+        // CASTING CONSTANTS
+
+        // Stats
+        public static string STATS_GROUP = "";
+        public static int DEFAULT_LIVES = 3;
+        public static int MAXIMUM_LIVES = 5;
+
+        // HUD
 
 
-    // Dialog
-    DIALOG_GROUP = "dialog";
-    ENTER_TO_START = "PRESS ENTER TO START";
-    GAME_ENDING = "GAME OVER";
+        // Ammunition
+        public static string AMMUNITION_GROUP = "";
+        public static string AMMUNITION_IMAGE = "";
+        public static int AMMUNITION_WIDTH = 28;
+        public static int AMMUNITION_HEIGHT = 28;
+        public static int AMMUNITION_VELOCITY = 8;
+
+        // Artillery
+        public static string ARTILLERY_GROUP = "";
+        public static string ARTILLERY_IMAGE = "";
+        public static int ARTILLERY_WIDTH = 10;
+        public static int ARTILLERY_HEIGHT = 10;
+        public static int ARTILLERY_RATE = 6;
+        public static int ARTILLERY_VELOCITY = 7;
+
+        // Building
+        public static string BUILDING_GROUP = "";
+        public static string BUILDING_IMAGE = "";
+        public static int BUILDING_WIDTH = 10;
+        public static int BUILDING_HEIGHT= 10;
+        public static int BUILDING_VELOCITY = 0;
+
+
+        // Aliens
+        public static string ALIEN_GROUP = "";
+        public static string ALIEN_IMAGE = "";
+        public static int ALIEN_WIDTH = 30;
+        public static int ALIEN_HEIGHT = 30;
+        public static float ALIEN_DELAY = 0.5F;
+        public static int ALIEN_RATE = 4;
+        public static int ALIEN_POINTS = 1;
+
+
+        // Flying Saucer
+        public static string FLYING_SAUCER_GROUP = "";
+        public static string FLYING_SAUCER_IMAGE = "";
+        public static int FLYING_SAUCER_WIDTH = 20;
+        public static int FLYING_SAUCER_HEIGHT = 20;
+        public static float FLYING_SAUCER_DELAY = 0.5F;
+        public static int FLYING_SAUCER_RATE = 4;
+        public static int FLYING_SAUCER_POINTS = 2;
+
+
+        // Dialog
+        public static string DIALOG_GROUP = "dialog";
+        public static string ENTER_TO_START = "PRESS ENTER TO START";
+        public static string GAME_ENDING = "GAME OVER";
+    }
 }
