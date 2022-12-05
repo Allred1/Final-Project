@@ -43,3 +43,38 @@ Structure:
     - Fonts
     - Images
     - Sounds
+
+
+
+More detailed outline: 
+
+Main: begins the game. Using abstraction and encapsulation. 
+Constants: stores the general data for video and audio output. Uses polymorphism. 
+Game (folder)
+    - Casting (folder)
+        - Actors 
+        - Cast: will contain all the actors. Will incorporate inheritance. 
+            - Aliens: configure the alien objects. Has inheritance. 
+            - Artillery: configure the artillery object. Has inheritance. 
+            - Buildings: configure the building objects. Has inheritance. 
+    - Directing (folder)
+        - Director: directs the game classes. Uses encapsulation. 
+    - Scripting (folder)
+        - Draw: a basic draw class used for all objects. Will be inherited. 
+        - DrawAliens: draws the aliens. Uses inheritance.
+        - DrawArtillery: draws the artillery. Uses inheritance. 
+        - Update: basic update class used for all moving objects. Will be inherited. 
+        - UpdateAliens: updates the aliens movement. Uses inheritance. 
+        - UpdateArtillery: updates the artillery’s movement. Uses inheritance. 
+        - Collisions: basic collision class used for all moving objects. Will be inherited. 
+        - CollisionBorders: detects collision against the screen window. Uses inheritance. 
+        - CollisionBuildings: detects alien collision against the buildings. Uses inheritance. 
+        - CollisionBullets: detects collision of bullets against aliens. Uses inheritance. 
+    - Services (folder)
+        - Keyboard: configures input. Uses abstraction. 
+        - Audio: configures audio output. Uses polymorphism and abstraction. 
+        - Video: configures visual output. Uses polymorphism and abstraction. 
+Assets (folder)
+- Fonts: configures the fonts. 
+- Images: stores the images. 
+- Sounds: stores the sounds. 
