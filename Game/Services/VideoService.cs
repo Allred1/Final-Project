@@ -25,7 +25,7 @@ namespace FinalProject.Game.Services
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Raylib_cs.Color.BLACK);
             // Image LoadImage(Constants.BACKGROUND_IMAGE);
-            Image GenImageColor(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+            Image LoadImage(Constants.BACKGROUND_IMAGE);
             if (debug) {
                 DrawGrid();
             }
