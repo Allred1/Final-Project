@@ -90,6 +90,7 @@ namespace FinalProject.Game
         public static int DEFAULT_LIVES = 3;
         public static int MAXIMUM_LIVES = 5;
         public static int SCORE = 0;
+        public static string SCORE_TEXT = "";
 
         // HUD
 

@@ -14,7 +14,6 @@ Actors attributes:
 */
 namespace FinalProject.Game.Casting
 {
-
     class Actor {
         public Vector2 Position { get; set; } = new Vector2(0,0);
         public Vector2 Velocity { get; set; } = new Vector2(0,0);
@@ -33,10 +32,10 @@ namespace FinalProject.Game.Casting
 
 
 
-    class coloredObject: Actor {
+    class ColoredObject: Actor {
         public Color Color { get; set; }
 
-        public coloredObject(Color color){
+        public ColoredObject(Color color){
 
             Color getRandomColor(){
                 // make a list of colors
