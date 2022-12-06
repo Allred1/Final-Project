@@ -15,7 +15,7 @@ Actors attributes:
 namespace FinalProject.Game
 {
 
-    class actor {
+    class Actor {
         public Vector2 Position { get; set; } = new Vector2(0,0);
         public Vector2 Velocity { get; set; } = new Vector2(0,0);
 
@@ -33,7 +33,7 @@ namespace FinalProject.Game
 
 
 
-    class coloredObject: actor {
+    class coloredObject: Actor {
         public Color Color { get; set; }
 
         public coloredObject(Color color){

@@ -12,7 +12,7 @@ namespace FinalProject.Game.Casting
             Size = size;
         }
         override public void Draw(){
-            Raylib.DrawText(constants.ALIEN_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
+            Raylib.DrawText(Constants.ALIEN_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
         }
     }
 
@@ -24,7 +24,7 @@ namespace FinalProject.Game.Casting
             Size = size;
         }
         override public void Draw(){
-            Raylib.DrawText(constants.ARTILLERY_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
+            Raylib.DrawText(Constants.ARTILLERY_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
         }
     }
 
@@ -36,7 +36,7 @@ namespace FinalProject.Game.Casting
             Size = size;
         }
         override public void Draw(){
-            Raylib.DrawText(constants.AMMUNITION_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
+            Raylib.DrawText(Constants.AMMUNITION_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
         }
     }
 
@@ -48,7 +48,7 @@ namespace FinalProject.Game.Casting
             Size = size;
         }
         override public void Draw(){
-            Raylib.DrawText(constants.BUILDING_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
+            Raylib.DrawText(Constants.BUILDING_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
         }
     }
 
@@ -60,7 +60,7 @@ namespace FinalProject.Game.Casting
             Size = size;
         }
         override public void Draw(){
-            Raylib.DrawText(constants.FLYING_SAUCER_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
+            Raylib.DrawText(Constants.FLYING_SAUCER_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
         }
     }
 }

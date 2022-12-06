@@ -94,14 +94,14 @@ namespace FinalProject.Game
 
         // Ammunition
         public static string AMMUNITION_GROUP = "";
-        public static string AMMUNITION_IMAGE = "";
+        public static string AMMUNITION_IMAGE = "final-project/assets/images/";
         public static int AMMUNITION_WIDTH = 28;
         public static int AMMUNITION_HEIGHT = 28;
         public static int AMMUNITION_VELOCITY = 8;
 
         // Artillery
         public static string ARTILLERY_GROUP = "";
-        public static string ARTILLERY_IMAGE = "";
+        public static string ARTILLERY_IMAGE = "final-project/assets/images/artillery2.png";
         public static int ARTILLERY_WIDTH = 10;
         public static int ARTILLERY_HEIGHT = 10;
         public static int ARTILLERY_RATE = 6;
@@ -117,7 +117,7 @@ namespace FinalProject.Game
 
         // Aliens
         public static string ALIEN_GROUP = "";
-        public static string ALIEN_IMAGE = "";
+        public static string ALIEN_IMAGE = "final-project/assets/images/alien2.png";
         public static int ALIEN_WIDTH = 30;
         public static int ALIEN_HEIGHT = 30;
         public static float ALIEN_DELAY = 0.5F;
@@ -127,12 +127,16 @@ namespace FinalProject.Game
 
         // Flying Saucer
         public static string FLYING_SAUCER_GROUP = "";
-        public static string FLYING_SAUCER_IMAGE = "";
+        public static string FLYING_SAUCER_IMAGE = "final-project/assets/images/flyingSaucer.png";
         public static int FLYING_SAUCER_WIDTH = 20;
         public static int FLYING_SAUCER_HEIGHT = 20;
         public static float FLYING_SAUCER_DELAY = 0.5F;
         public static int FLYING_SAUCER_RATE = 4;
         public static int FLYING_SAUCER_POINTS = 2;
+
+        // Background
+        public static string BACKGROUND_GROUP = "";
+        public static string BACKGROUND_IMAGE = "final-project/assets/images/spaceBackground2.png";
 
 
         // Dialog
