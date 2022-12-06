@@ -91,6 +91,10 @@ namespace FinalProject.Game
         public static int MAXIMUM_LIVES = 5;
         public static int SCORE_NUMBER = 0;
         public static string SCORE_TEXT = $"Score: {SCORE_NUMBER}";
+        public static int SCORE_SIZE = 20;
+        public static Color SCORE_COLOR = Color.GREEN;
+        public static int SCORE_POSITION_X = 5;
+        public static int SCORE_POSITION_Y = 5;
 
         // HUD
 

@@ -4,6 +4,7 @@ using Raylib_cs;
 using FinalProject.Game.Casting;
 
 
+
 namespace FinalProject.Game.Services
 {
     public class VideoService{
@@ -23,6 +24,8 @@ namespace FinalProject.Game.Services
         public void ClearBuffer() {
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Raylib_cs.Color.BLACK);
+            // Image LoadImage(Constants.BACKGROUND_IMAGE);
+            Image GenImageColor(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
             if (debug) {
                 DrawGrid();
             }
