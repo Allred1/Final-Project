@@ -1,10 +1,9 @@
-using System;
 using Raylib_cs;
 
 
 namespace FinalProject.Game.Casting
 {
-    public class Score: ColoredObject {
+    class Score: ColoredObject {
         private int points = 0;
         public int Size { get; set; }
 
@@ -19,7 +18,7 @@ namespace FinalProject.Game.Casting
         // Adds points to score
         public void AddPoints(int points){
             this.points += points;
-            Constants.SCORE = this.points;
+            Constants.SCORE_NUMBER = this.points;
         }
     }
 }
