@@ -18,8 +18,7 @@ namespace FinalProject.Game.Casting
 
 
     // Create Artillery Object
-    class Artillery: coloredObject {
-        
+    class Artillery: coloredObject {        
         public int Size { get; set; }
         public Artillery(Color color, int size): base(color){
             Size = size;
@@ -32,7 +31,6 @@ namespace FinalProject.Game.Casting
 
     // Create Ammunition Object
     class Ammunition: coloredObject {
-
         public int Size { get; set; }
         public Ammunition(Color color, int size): base(color){
             Size = size;
@@ -45,7 +43,6 @@ namespace FinalProject.Game.Casting
 
     // Create Building object
     class Building: coloredObject {
-        
         public int Size { get; set; }
         public Building(Color color, int size): base(color){
             Size = size;
@@ -58,7 +55,6 @@ namespace FinalProject.Game.Casting
 
     // Create Flying Saucer object
     class flyingSaucer: coloredObject {
-        
         public int Size { get; set; }
         public flyingSaucer(Color color, int size): base(color){
             Size = size;
