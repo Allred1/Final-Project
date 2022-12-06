@@ -4,13 +4,14 @@ using Raylib_cs;
 namespace FinalProject.Game
 {
 
-    public class constants {
+    public class Constants {
 
         // GENERAL GAME CONSTANTS
 
         // Game
         public static string GAME_NAME = "Space Invaders";
         public static int FRAME_RATE = 60;
+        public static int CELL_SIZE = 15;
 
         
         // Screen
@@ -88,6 +89,7 @@ namespace FinalProject.Game
         public static string STATS_GROUP = "";
         public static int DEFAULT_LIVES = 3;
         public static int MAXIMUM_LIVES = 5;
+        public static int SCORE = 0;
 
         // HUD
 

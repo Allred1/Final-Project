@@ -12,7 +12,7 @@ Actors attributes:
 - 
 
 */
-namespace FinalProject.Game
+namespace FinalProject.Game.Casting
 {
 
     class Actor {
