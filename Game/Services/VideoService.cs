@@ -2,13 +2,36 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using Raylib_cs;
 using FinalProject.Game.Casting;
+using System.Numerics;
 
 
 
 namespace FinalProject.Game.Services
 {
     public class VideoService{
+        Texture2D background = Raylib.LoadTexture(Constants.BACKGROUND_IMAGE);
+
+        
+        
         private bool debug = false;
+
+        public void createObjectList(){
+            var Objects = new List<Actor>();
+
+
+            var Artillery = new Artillery(Color.GOLD, 40);
+            Artillery.Position = new Vector2(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - 45);
+
+            Objects.Add(Artillery);
+
+            foreach (var obj in Objects.ToList()){
+                obj.Draw();
+            }
+
+            foreach (var obj in Objects) {
+                obj.Move();
+            }
+        }
 
         // Constructs new instance of VideoService
         public VideoService(bool debug){
@@ -20,11 +43,27 @@ namespace FinalProject.Game.Services
             Raylib.CloseWindow();
         }
 
+
         // Clear buffer to prepare for next rendering
         public void ClearBuffer() {
+            // Init 
+            // Texture2D background = Raylib.LoadTexture(Constants.BACKGROUND_IMAGE);
+            // Texture2D sprite = LoadTexture(Constants.ALIEN_IMAGE);
+
             Raylib.BeginDrawing();
             // find a way to insert "BACKGROUND_IMAGE" as a background png for the program
-            Raylib.ClearBackground(Raylib_cs.Color.BLACK);
+            Raylib.ClearBackground(Color.BLACK);
+
+
+            // Draw 
+            // Raylib.DrawTexture(background, 0, 0, Color.WHITE);
+            // DrawTexture(sprite, 0, 0, WHITE);
+
+
+            // var image = Raylib.LoadImage(Constants.BACKGROUND_IMAGE);
+            // this.texture = Raylib.LoadTextureFromImage(image);
+            // Raylib.UnloadImage(image);
+
             if (debug) {
                 DrawGrid();
             }
@@ -35,6 +74,11 @@ namespace FinalProject.Game.Services
         public void FlushBuffer(){
             Raylib.EndDrawing();
         }
+
+        public void UnloadImages(){
+            Raylib.UnloadTexture(background);
+        }
+
 
 
         // Whether or not the window is still open

@@ -108,11 +108,13 @@ namespace FinalProject.Game
 
         // Artillery
         public static string ARTILLERY_GROUP = "";
-        public static string ARTILLERY_IMAGE = "final-project/assets/images/artillery2.png";
+        public static string ARTILLERY_IMAGE = "C:/Users/allre/Documents/Git/Final-Project/assets/images/artillery2.png";
+        // testing
+        // public static string ARTILLERY_IMAGE = "C:/Users/allre/Pictures/Screen Savers/IMG_0011.JPG";
         public static int ARTILLERY_WIDTH = 10;
         public static int ARTILLERY_HEIGHT = 10;
         public static int ARTILLERY_RATE = 6;
-        public static int ARTILLERY_VELOCITY = 7;
+        public static int ARTILLERY_VELOCITY = 8;
 
         // Building
         public static string BUILDING_GROUP = "";
@@ -143,7 +145,7 @@ namespace FinalProject.Game
 
         // Background
         public static string BACKGROUND_GROUP = "";
-        public static string BACKGROUND_IMAGE = "final-project/assets/images/spaceBackground2.png";
+        public static string BACKGROUND_IMAGE = "C:/Users/allre/Documents/Git/Final-Project/assets/images/spaceBackground2.png";
 
 
         // Dialog
