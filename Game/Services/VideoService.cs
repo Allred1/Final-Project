@@ -23,9 +23,8 @@ namespace FinalProject.Game.Services
         // Clear buffer to prepare for next rendering
         public void ClearBuffer() {
             Raylib.BeginDrawing();
+            // find a way to insert "BACKGROUND_IMAGE" as a background png for the program
             Raylib.ClearBackground(Raylib_cs.Color.BLACK);
-            // Image LoadImage(Constants.BACKGROUND_IMAGE);
-            // Image LoadImage(Constants.BACKGROUND_IMAGE);
             if (debug) {
                 DrawGrid();
             }
