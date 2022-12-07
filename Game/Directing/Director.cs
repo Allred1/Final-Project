@@ -17,9 +17,12 @@ namespace FinalProject.Game.Directing
         
         public void StartGame(){
 
-            var Objects = new List<Actor>();
+            var rowOneObjects = new List<Actor>();
+            var rowTwoObjects = new List<Actor>();
             int alienCounter = 0;
             int objectXPosition = 30;
+            // int rowOneXPosition = 30;
+            int rowTwoXPosition = 30;
             var artilleryPosition = new Vector2(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - 45);
 
 
@@ -30,21 +33,37 @@ namespace FinalProject.Game.Directing
 
                 // aliens start at top of screen
                 var startAtTop = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT - 30;
-                
+                    
                 var objectPosition = new Vector2(objectXPosition, startAtTop);
+                var object2Position = new Vector2(rowTwoXPosition, startAtTop);
                 
 
+                // create another list for every row of aliens
+                // then draw each list after a delay so they'll come one after another
 
-                // first row
+
                 // create the aliens
+                // first row              
                 if (alienCounter < 12){
                     var alien = new Aliens(Color.PURPLE, 100);
                     alien.Position = objectPosition;
                     objectXPosition += 85;
                     alien.Velocity = new Vector2(0,0.3f);
-                    Objects.Add(alien);
+                    rowOneObjects.Add(alien);
                     alienCounter += 1;
                 }
+                // second row
+                // if (alienCounter < 12){
+                //     var building = new Building(Color.BLUE, 100);
+                //     building.Position = object2Position;
+                //     rowTwoXPosition += 85;
+                //     building.Velocity = new Vector2(0,0.3f);
+                //     rowTwoObjects.Add(building);
+                //     alienCounter += 1;
+                // }
+
+
+
 
 
                 // begin drawing
@@ -65,23 +84,30 @@ namespace FinalProject.Game.Directing
                 
 
                 // draw the objects
-                foreach (var obj in Objects.ToList()) {
+                foreach (var obj in rowOneObjects.ToList()) {
+                    obj.Draw();
+                }
+                foreach (var obj in rowTwoObjects.ToList()) {
                     obj.Draw();
                 }
 
                 // end drawing
                 videoService.FlushBuffer();
 
+
                 // move positions of the objects
-                foreach (var obj in Objects) {
+                foreach (var obj in rowOneObjects) {
+                    obj.Move();
+                }
+                foreach (var obj in rowTwoObjects) {
                     obj.Move();
                 }
 
 
                 // Remove objects if they pass beyond a certain y-value
-                foreach (var obj in Objects.ToList()){
+                foreach (var obj in rowOneObjects.ToList()){
                     if (obj.Position.Y >= 620) {
-                        Objects.Remove(obj);
+                        rowOneObjects.Remove(obj);
                     }
                 }
 
