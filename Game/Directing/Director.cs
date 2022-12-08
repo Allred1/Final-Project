@@ -32,10 +32,20 @@ namespace FinalProject.Game.Directing
             int rowThreeXPosition = 30;
             int rowFourXPosition = 30;
 
+            bool fired = false;
+
             
             // configure Player's position
             var artilleryPosition = new Vector2(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - 45);
+            // configure ammunition's position
+            // var ammunititionPosition = new Vector2(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - 45);
+            // var ammunitionPosition = artilleryPosition;
+            
+            var ammunitionPosition = artilleryPosition;
 
+            // var ammunitionPosition = new Vector2(artilleryPosition.X, (artilleryPosition.Y += 2));
+            
+            
 
             videoService.OpenWindow();
 
@@ -48,10 +58,12 @@ namespace FinalProject.Game.Directing
                 var rowThreeYPosition = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT - 170;
                 var rowFourYPosition = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT - 240;
                     
+                // their actual position for movement    
                 var rowOnePosition = new Vector2(rowOneXPosition, rowOneYPosition);
                 var rowTwoPosition = new Vector2(rowTwoXPosition, rowTwoYPosition);
                 var rowThreePosition = new Vector2(rowThreeXPosition, rowThreeYPosition);
                 var rowFourPosition = new Vector2(rowFourXPosition, rowFourYPosition);
+
                 
 
                 // create another list for every row of aliens
@@ -63,7 +75,9 @@ namespace FinalProject.Game.Directing
                 if (rowOneCounter < 12){
                     var alien = new Aliens(Color.PURPLE, 100, new Rectangle());
                     alien.Position = rowOnePosition;
+                    // this increments each alien drawn on that one row
                     rowOneXPosition += 85;
+
                     alien.Velocity = new Vector2(0,0.2f);
                     rowOneObjects.Add(alien);
                     rowOneCounter += 1;
@@ -96,6 +110,8 @@ namespace FinalProject.Game.Directing
                     rowFourCounter += 1;
                 }
 
+                
+
 
 
 
@@ -114,6 +130,36 @@ namespace FinalProject.Game.Directing
                 if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT)){
                     artilleryPosition.X -= Constants.ARTILLERY_VELOCITY;
                 }
+
+                void Missile(){
+                    var ammunition = new Ammunition(Color.RED, 25, new Rectangle());
+                    ammunition.Position = new Vector2(artilleryPosition.X, ammunitionPosition.Y);
+                    rowOneObjects.Add(ammunition);
+                }
+
+                // check for ammunition movement (if the player shoots a laserbeam)
+                if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE)){
+                    Missile();
+                    fired = true;
+                    // ammunitionPosition.Y -= Constants.AMMUNITION_VELOCITY;
+                }
+                if (Raylib.IsKeyReleased(KeyboardKey.KEY_SPACE)){
+                    fired = false;
+                }
+
+                
+                    // ammunitionPosition.Y -= Constants.AMMUNITION_VELOCITY;
+                    // Raylib.DrawText("I", (int)ammunitionPosition.X, (int)ammunitionPosition.Y, 20, Color.RED);
+                    // var ammunition = new Ammunition(Color.RED, 30, new Rectangle());
+                    // ammunitionPosition.Y -= 2;
+                    // ammunitionPosition.Y -= Constants.AMMUNITION_VELOCITY;
+                    // ammunitionPosition.Y -= 2;
+                    // ammunition.Velocity = new Vector2(0,Constants.AMMUNITION_VELOCITY);
+                    // rowOneObjects.Add(ammunition);
+                    // ammunition.Position.Y += 2;
+                    // Raylib.DrawText("I", (int)ammunitionPosition.X, (int)ammunitionPosition.Y, 20, Color.RED);
+                
+                
 
                 
                 // Draw the objects
@@ -188,9 +234,9 @@ namespace FinalProject.Game.Directing
   
 
                 // Draw artillery (player)
-                Raylib.DrawText("A", (int)artilleryPosition.X, (int)artilleryPosition.Y, 40, Color.GOLD);
-                
-        
+                Raylib.DrawText("A", (int)artilleryPosition.X, (int)artilleryPosition.Y, 40, Color.GOLD);  
+                // Raylib.DrawText("I", (int)ammunitionPosition.X, (int)ammunitionPosition.Y, 20, Color.RED);
+
 
             }
             // unload textures
