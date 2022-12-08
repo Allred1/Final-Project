@@ -4,6 +4,7 @@ using FinalProject.Game.Casting;
 using FinalProject.Game.Services;
 using Raylib_cs;
 using System.Numerics;
+using System.Threading;
 
 
 namespace FinalProject.Game.Directing
@@ -17,12 +18,22 @@ namespace FinalProject.Game.Directing
         
         public void StartGame(){
 
+            // Configure rows of Aliens
             var rowOneObjects = new List<Actor>();
             var rowTwoObjects = new List<Actor>();
-            int alienCounter = 0;
-            int objectXPosition = 30;
-            // int rowOneXPosition = 30;
+            var rowThreeObjects = new List<Actor>();
+            var rowFourObjects = new List<Actor>();
+            int rowOneCounter = 0;
+            int rowTwoCounter = 0;
+            int rowThreeCounter = 0;
+            int rowFourCounter = 0;
+            int rowOneXPosition = 30;
             int rowTwoXPosition = 30;
+            int rowThreeXPosition = 30;
+            int rowFourXPosition = 30;
+
+            
+            // configure Player's position
             var artilleryPosition = new Vector2(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - 45);
 
 
@@ -32,10 +43,15 @@ namespace FinalProject.Game.Directing
             while(videoService.IsWindowOpen()){
 
                 // aliens start at top of screen
-                var startAtTop = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT - 30;
+                var rowOneYPosition = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT - 30;
+                var rowTwoYPosition = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT - 100;
+                var rowThreeYPosition = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT - 170;
+                var rowFourYPosition = Constants.SCREEN_HEIGHT - Constants.SCREEN_HEIGHT - 240;
                     
-                var objectPosition = new Vector2(objectXPosition, startAtTop);
-                var object2Position = new Vector2(rowTwoXPosition, startAtTop);
+                var rowOnePosition = new Vector2(rowOneXPosition, rowOneYPosition);
+                var rowTwoPosition = new Vector2(rowTwoXPosition, rowTwoYPosition);
+                var rowThreePosition = new Vector2(rowThreeXPosition, rowThreeYPosition);
+                var rowFourPosition = new Vector2(rowFourXPosition, rowFourYPosition);
                 
 
                 // create another list for every row of aliens
@@ -44,23 +60,41 @@ namespace FinalProject.Game.Directing
 
                 // create the aliens
                 // first row              
-                if (alienCounter < 12){
-                    var alien = new Aliens(Color.PURPLE, 100);
-                    alien.Position = objectPosition;
-                    objectXPosition += 85;
-                    alien.Velocity = new Vector2(0,0.3f);
+                if (rowOneCounter < 12){
+                    var alien = new Aliens(Color.PURPLE, 100, new Rectangle());
+                    alien.Position = rowOnePosition;
+                    rowOneXPosition += 85;
+                    alien.Velocity = new Vector2(0,0.2f);
                     rowOneObjects.Add(alien);
-                    alienCounter += 1;
+                    rowOneCounter += 1;
                 }
                 // second row
-                // if (alienCounter < 12){
-                //     var building = new Building(Color.BLUE, 100);
-                //     building.Position = object2Position;
-                //     rowTwoXPosition += 85;
-                //     building.Velocity = new Vector2(0,0.3f);
-                //     rowTwoObjects.Add(building);
-                //     alienCounter += 1;
-                // }
+                if (rowTwoCounter < 12){
+                    var alien = new Aliens(Color.BLUE, 100, new Rectangle());
+                    alien.Position = rowTwoPosition;
+                    rowTwoXPosition += 85;
+                    alien.Velocity = new Vector2(0,0.2f);
+                    rowTwoObjects.Add(alien);
+                    rowTwoCounter += 1;
+                }
+                // third row
+                if (rowThreeCounter < 12){
+                    var alien = new Aliens(Color.ORANGE, 100, new Rectangle());
+                    alien.Position = rowThreePosition;
+                    rowThreeXPosition += 85;
+                    alien.Velocity = new Vector2(0,0.2f);
+                    rowThreeObjects.Add(alien);
+                    rowThreeCounter += 1;
+                }
+                // fourth row
+                if (rowFourCounter < 12){
+                    var alien = new Aliens(Color.WHITE, 100, new Rectangle());
+                    alien.Position = rowFourPosition;
+                    rowFourXPosition += 85;
+                    alien.Velocity = new Vector2(0,0.2f);
+                    rowFourObjects.Add(alien);
+                    rowFourCounter += 1;
+                }
 
 
 
@@ -82,38 +116,78 @@ namespace FinalProject.Game.Directing
                 }
 
                 
+                // Draw the objects
+                void DrawObjects(){
+                    // draw the objects
+                    foreach (var obj in rowOneObjects.ToList()) {
+                        obj.Draw();
+                    }
+                    foreach (var obj in rowTwoObjects.ToList()) {
+                        obj.Draw();
+                    }
+                    foreach (var obj in rowThreeObjects.ToList()) {
+                        obj.Draw();
+                    }
+                    foreach (var obj in rowFourObjects.ToList()) {
+                        obj.Draw();
+                    }
+                }
+                DrawObjects();
 
-                // draw the objects
-                foreach (var obj in rowOneObjects.ToList()) {
-                    obj.Draw();
-                }
-                foreach (var obj in rowTwoObjects.ToList()) {
-                    obj.Draw();
-                }
 
                 // end drawing
                 videoService.FlushBuffer();
 
 
-                // move positions of the objects
-                foreach (var obj in rowOneObjects) {
-                    obj.Move();
+                // Move the objects
+                void MoveObjects(){
+                    // move positions of the objects
+                    foreach (var obj in rowOneObjects) {
+                        obj.Move();
+                    }
+                    // Thread.Sleep(300);
+                    foreach (var obj in rowTwoObjects) {
+                        obj.Move();
+                    }
+                    foreach (var obj in rowThreeObjects) {
+                        obj.Move();
+                    }
+                    foreach (var obj in rowFourObjects) {
+                        obj.Move();
+                    }
                 }
-                foreach (var obj in rowTwoObjects) {
-                    obj.Move();
-                }
+                MoveObjects();
+
 
 
                 // Remove objects if they pass beyond a certain y-value
-                foreach (var obj in rowOneObjects.ToList()){
-                    if (obj.Position.Y >= 620) {
-                        rowOneObjects.Remove(obj);
+                void removeObjects(){
+                    foreach (var obj in rowOneObjects.ToList()){
+                        if (obj.Position.Y >= 620) {
+                            rowOneObjects.Remove(obj);
+                        }
+                    }
+                    foreach (var obj in rowTwoObjects.ToList()){
+                        if (obj.Position.Y >= 620) {
+                            rowTwoObjects.Remove(obj);
+                        }
+                    }
+                    foreach (var obj in rowThreeObjects.ToList()){
+                        if (obj.Position.Y >= 620) {
+                            rowThreeObjects.Remove(obj);
+                        }
+                    }
+                    foreach (var obj in rowFourObjects.ToList()){
+                        if (obj.Position.Y >= 620) {
+                            rowFourObjects.Remove(obj);
+                        }
                     }
                 }
-
+                removeObjects();
+                
   
 
-
+                // Draw artillery (player)
                 Raylib.DrawText("A", (int)artilleryPosition.X, (int)artilleryPosition.Y, 40, Color.GOLD);
                 
         
@@ -125,3 +199,19 @@ namespace FinalProject.Game.Directing
         }
     }
 }
+
+
+/*
+Notes to self:
+
+Aliens: check
+Artillery: check
+
+Need: 
+- ammunition & spacebar activation
+- buildings --their position, no velocity
+- collisions (aliens against buildings, ammunition against aliens) (remove the aliens or building upon collisions)
+
+
+
+*/

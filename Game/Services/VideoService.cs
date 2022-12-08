@@ -19,7 +19,7 @@ namespace FinalProject.Game.Services
             var Objects = new List<Actor>();
 
 
-            var Artillery = new Artillery(Color.GOLD, 40);
+            var Artillery = new Artillery(Color.GOLD, 40, new Rectangle());
             Artillery.Position = new Vector2(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - 45);
 
             Objects.Add(Artillery);
@@ -79,7 +79,7 @@ namespace FinalProject.Game.Services
             Raylib.UnloadTexture(background);
         }
 
-
+ 
 
         // Whether or not the window is still open
         public bool IsWindowOpen(){

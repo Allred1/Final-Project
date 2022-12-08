@@ -7,7 +7,7 @@ namespace FinalProject.Game.Casting
         private int points = 0;
         public int Size { get; set; }
 
-        public Score(Color color, int size): base(color){
+        public Score(Color color, int size, Rectangle rectangle): base(color, rectangle){
             Size = size;
             AddPoints(0);
         }

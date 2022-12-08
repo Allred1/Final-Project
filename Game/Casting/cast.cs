@@ -9,12 +9,13 @@ namespace FinalProject.Game.Casting
     class Aliens: ColoredObject {
         Texture2D texture;
         public int Size { get; set; }
-        public Aliens(Color color, int size): base(color){
+        public Aliens(Color color, int size, Rectangle rectangle): base(color, rectangle){
             Size = size;
             // var image = Raylib.LoadImage(Constants.ALIEN_IMAGE);
             // this.texture = Raylib.LoadTextureFromImage(image);
             // Raylib.UnloadImage(image);
         }
+        
         override public void Draw(){
             // Raylib.DrawText(Constants.ALIEN_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
             Raylib.DrawText("*", (int)Position.X, (int)Position.Y, Size, Color);
@@ -26,7 +27,7 @@ namespace FinalProject.Game.Casting
     class Artillery: ColoredObject { 
         Texture2D texture;       
         public int Size { get; set; }
-        public Artillery(Color color, int size): base(color){
+        public Artillery(Color color, int size, Rectangle rectangle): base(color, rectangle){
             Size = size;
             // var image = Raylib.LoadImage(Constants.ARTILLERY_IMAGE);
             // this.texture = Raylib.LoadTextureFromImage(image);
@@ -47,7 +48,7 @@ namespace FinalProject.Game.Casting
     // Create Ammunition Object
     class Ammunition: ColoredObject {
         public int Size { get; set; }
-        public Ammunition(Color color, int size): base(color){
+        public Ammunition(Color color, int size, Rectangle rectangle): base(color, rectangle){
             Size = size;
         }
         override public void Draw(){
@@ -60,7 +61,7 @@ namespace FinalProject.Game.Casting
     // Create Building object
     class Building: ColoredObject {
         public int Size { get; set; }
-        public Building(Color color, int size): base(color){
+        public Building(Color color, int size, Rectangle rectangle): base(color, rectangle){
             Size = size;
         }
         override public void Draw(){
@@ -74,7 +75,7 @@ namespace FinalProject.Game.Casting
     class flyingSaucer: ColoredObject {
         Texture2D texture;
         public int Size { get; set; }
-        public flyingSaucer(Color color, int size): base(color){
+        public flyingSaucer(Color color, int size, Rectangle rectangle): base(color, rectangle){
             Size = size;
             // var image = Raylib.LoadImage(Constants.FLYING_SAUCER_IMAGE);
             // this.texture = Raylib.LoadTextureFromImage(image);

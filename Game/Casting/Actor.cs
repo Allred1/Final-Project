@@ -17,11 +17,12 @@ namespace FinalProject.Game.Casting
 
         public Vector2 Position { get; set; } = new Vector2(0,0);
         public Vector2 Velocity { get; set; } = new Vector2(0,0);
-
+    
         // add a rectangle (for collisions)
-        public Rectangle Rect() {
-            return new Rectangle(Position.X, Position.Y, 20, 20);
-        }
+        // virtual public Rectangle Rect() {
+        //     return new Rectangle(Position.X, Position.Y, 0, 0);
+        // }
+        
 
         virtual public void Draw(){
         }
@@ -40,9 +41,11 @@ namespace FinalProject.Game.Casting
     class ColoredObject: Actor {
 
         public Color Color { get; set; }
-
-        public ColoredObject(Color color){
+        public Rectangle Rectangle {get; set;}
+        
+        public ColoredObject(Color color, Rectangle rectangle){
             Color = color;
+            Rectangle = rectangle;
         }
     }
     
