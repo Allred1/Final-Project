@@ -6,9 +6,11 @@ namespace FinalProject.Game.Casting
     class Score: ColoredObject {
         private int points = 0;
         public int Size { get; set; }
+        // public Rectangle Rectangle { get; set; }
 
-        public Score(Color color, int size, Rectangle rectangle): base(color, rectangle){
+        public Score(Color color, int size): base(color){
             Size = size;
+            // Rectangle = rectangle;
             AddPoints(0);
         }
         override public void Draw(){

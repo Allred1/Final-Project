@@ -18,7 +18,7 @@ namespace FinalProject.Game.Casting
         public Vector2 Position { get; set; } = new Vector2(0,0);
         public Vector2 Velocity { get; set; } = new Vector2(0,0);
 
-        public Rectangle newRectangle { get; set; } = new Rectangle();
+        // public Rectangle newRectangle { get; set; } = new Rectangle();
 
         public bool isBuilding;
         public bool isAmmunition;
@@ -28,6 +28,8 @@ namespace FinalProject.Game.Casting
         // virtual public Rectangle Rect() {
         //     return new Rectangle(Position.X, Position.Y, 0, 0);
         // }
+        public Rectangle Rectangle { get; set; } 
+        // = new Rectangle(0,0,0,0);
         
 
         virtual public void Draw(){
@@ -47,11 +49,11 @@ namespace FinalProject.Game.Casting
     class ColoredObject: Actor {
 
         public Color Color { get; set; }
-        public Rectangle Rectangle {get; set;}
+        // public Rectangle Rectangle {get; set;}
         
-        public ColoredObject(Color color, Rectangle rectangle){
+        public ColoredObject(Color color){
             Color = color;
-            Rectangle = rectangle;
+            // Rectangle = rectangle;
         }
         
     }

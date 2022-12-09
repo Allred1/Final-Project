@@ -19,7 +19,7 @@ namespace FinalProject.Game.Services
             var Objects = new List<Actor>();
 
 
-            var Artillery = new Artillery(Color.GOLD, 40, new Rectangle());
+            var Artillery = new Artillery(Color.GOLD, 40);
             Artillery.Position = new Vector2(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT - 45);
 
             Objects.Add(Artillery);
