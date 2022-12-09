@@ -67,6 +67,11 @@ namespace FinalProject.Game.Casting
         override public void Draw(){
             // Raylib.DrawText(Constants.BUILDING_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
             Raylib.DrawText("M", (int)Position.X, (int)Position.Y, Size, Color);
+            Raylib.DrawText("Y", (int)Position.X, (int)Position.Y, Size, Color);
+            Raylib.DrawText("T", (int)Position.X, (int)Position.Y, Size, Color);
+
+
+
         }
     }
 
