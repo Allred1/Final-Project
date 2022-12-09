@@ -17,7 +17,8 @@ namespace FinalProject.Game.Directing
             this.videoService = videoService;
         }
         
-        public void StartGame(){
+        public void StartGame()
+        {
 
             // Configure rows of Aliens
             var alienObjects = new List<Actor>();
@@ -36,6 +37,7 @@ namespace FinalProject.Game.Directing
             // configure buildings
             var buildingObjects = new List<Actor>();
             var buildingPosition = new Vector2(90, 525);
+            var buildingRectangle = new Rectangle((int)buildingPosition.X, (int)buildingPosition.Y, 63, 63);
             var buildingCounter = 0;
             
             // configure Player's position
@@ -64,6 +66,15 @@ namespace FinalProject.Game.Directing
                 var rowThreePosition = new Vector2(rowThreeXPosition, rowThreeYPosition);
                 var rowFourPosition = new Vector2(rowFourXPosition, rowFourYPosition);
 
+                var rowOneAlienRectangle = new Rectangle(rowOnePosition.X, rowOnePosition.Y, 50, 50);
+                var rowTwoAlienRectangle = new Rectangle(rowTwoPosition.X, rowTwoPosition.Y, 50, 50);
+                var rowThreeAlienRectangle = new Rectangle(rowThreePosition.X, rowThreePosition.Y, 50, 50);
+                var rowFourAlienRectangle = new Rectangle(rowFourPosition.X, rowFourPosition.Y, 50, 50);
+
+
+                var ammunitionRectangle = new Rectangle(artilleryPosition.X, ammunitionPosition.Y, 10, 25);
+
+
             
 
                 // create the aliens
@@ -71,11 +82,14 @@ namespace FinalProject.Game.Directing
                 if (rowOneCounter < 12){
                     var alien = new Aliens(Color.PURPLE, 100, new Rectangle());
                     alien.Position = rowOnePosition;
+                    alien.Rectangle = rowOneAlienRectangle;
                     // this increments each alien drawn on that one row
                     rowOneXPosition += 85;
-
                     alien.Velocity = new Vector2(0,0.2f);
-                    // alienObjects.Add(alien);
+                    alienObjects.Add(alien);
+                    alien.isBuilding = false;
+                    alien.isAlien = true;
+                    alien.isAmmunition = false;
                     allObjects.Add(alien);
                     rowOneCounter += 1;
                 }
@@ -83,9 +97,13 @@ namespace FinalProject.Game.Directing
                 if (rowTwoCounter < 12){
                     var alien = new Aliens(Color.BLUE, 100, new Rectangle());
                     alien.Position = rowTwoPosition;
+                    alien.Rectangle = rowTwoAlienRectangle;
                     rowTwoXPosition += 85;
                     alien.Velocity = new Vector2(0,0.2f);
-                    // alienObjects.Add(alien);
+                    alienObjects.Add(alien);
+                    alien.isBuilding = false;
+                    alien.isAlien = true;
+                    alien.isAmmunition = false;
                     allObjects.Add(alien);
                     rowTwoCounter += 1;
                 }
@@ -93,9 +111,13 @@ namespace FinalProject.Game.Directing
                 if (rowThreeCounter < 12){
                     var alien = new Aliens(Color.ORANGE, 100, new Rectangle());
                     alien.Position = rowThreePosition;
+                    alien.Rectangle = rowThreeAlienRectangle;
                     rowThreeXPosition += 85;
                     alien.Velocity = new Vector2(0,0.2f);
-                    // alienObjects.Add(alien);
+                    alienObjects.Add(alien);
+                    alien.isBuilding = false;
+                    alien.isAlien = true;
+                    alien.isAmmunition = false;
                     allObjects.Add(alien);
                     rowThreeCounter += 1;
                 }
@@ -103,9 +125,13 @@ namespace FinalProject.Game.Directing
                 if (rowFourCounter < 12){
                     var alien = new Aliens(Color.WHITE, 100, new Rectangle());
                     alien.Position = rowFourPosition;
+                    alien.Rectangle = rowFourAlienRectangle;
                     rowFourXPosition += 85;
                     alien.Velocity = new Vector2(0,0.2f);
-                    // alienObjects.Add(alien);
+                    alienObjects.Add(alien);
+                    alien.isBuilding = false;
+                    alien.isAlien = true;
+                    alien.isAmmunition = false;
                     allObjects.Add(alien);
                     rowFourCounter += 1;
                 }
@@ -115,8 +141,13 @@ namespace FinalProject.Game.Directing
                 if (buildingCounter < 5){
                     var building = new Building(Color.DARKGRAY, 90, new Rectangle(buildingPosition.X, buildingPosition.Y, 30, 30));
                     building.Position = buildingPosition;
+                    building.Rectangle = buildingRectangle;
                     buildingPosition.X += 200;
                     building.Velocity = new Vector2(0,0);
+                    // identify what it is and isn't
+                    building.isBuilding = true;
+                    building.isAlien = false;
+                    building.isAmmunition = false;
                     buildingObjects.Add(building);
                     allObjects.Add(building);
                     buildingCounter += 1;
@@ -147,8 +178,14 @@ namespace FinalProject.Game.Directing
                 void Missile(){
                     var ammunition = new Ammunition(Color.RED, 25, new Rectangle(artilleryPosition.X, ammunitionPosition.Y, 10, 25));
                     ammunition.Position = new Vector2((artilleryPosition.X + (artillerySize / 4)), (ammunitionPosition.Y - (artillerySize / 2)));
+                    // ammunition.newRectangle = new Rectangle(artilleryPosition.X, ammunitionPosition.Y, 10, 25);
                     // var ammunitionNewRectangle = new Rectangle(())
+                    // var ammunitionRectangle = new Rectangle(artilleryPosition.X, ammunitionPosition.Y, 10, 25);
+                    ammunition.Rectangle = ammunitionRectangle;
                     ammunition.Velocity = new Vector2(0,-Constants.AMMUNITION_VELOCITY);
+                    ammunition.isBuilding = false;
+                    ammunition.isAlien = false;
+                    ammunition.isAmmunition = true;
                     ammunitionObjects.Add(ammunition);
                     allObjects.Add(ammunition);
                 }
@@ -215,7 +252,9 @@ namespace FinalProject.Game.Directing
                         }
                         if (obj.Position.Y <= -300) {
                             allObjects.Remove(obj);
-                            ammunitionObjects.Remove(obj);
+                            if (obj.isAmmunition == true){
+                                allObjects.Remove(obj);
+                            }
                         }
                     }
                 }
@@ -236,118 +275,38 @@ namespace FinalProject.Game.Directing
                 // allAliensList.Add(rowThreeObjects);
                 // allAliensList.Add(rowFourObjects);
 
-
-                /*
-                All lists:
-                - aliens list
-                - building list
-                - ammunition list
-
-                Need:
-                - check collisions for:
-                    - aliens & buildings
-                    - aliens & ammunitions
-                    - ammunitions & buildings
-
-                
-                I'll need to iterate through
-                - aliens list
-                - ammunitions (does ammunitions need to be a object list?)
-
-
-
-                */
-            
-
-                /*
-                foreach (var obj in list.ToList()){
-                    var rectangle = new Rectangle(obj.Position.X, obj.Position.Y, width, height);
-                    if (Raylib.CheckCollisionRecs(rectangles1, rectangles2)){
-                        do something
-                        [in general: remove the object, whatever it is]
-                        (for aliens & buildings: destroy buildings & subtract 1 of 5 lives)
-                        (for aliens & ammunitions: destroy aliens & add point to score)
-                        (for buildings and ammunitions: subtract several points from score)
+                if (Raylib.CheckCollisionRecs(ammunitionRectangle, buildingRectangle)){
+                    foreach (var obj in ammunitionObjects){
+                        allObjects.Remove(obj);
+                        ammunitionObjects.Remove(obj);
                     }
                 }
-
-                */
-                foreach (var obj in allObjects.ToList()){
-                    // var buildingRectangle = createRectangle((int)buildingPosition.X, (int)buildingPosition.Y, 100, 100);
-                    // var ammunitionRectangle = createRectangle((int)artilleryPosition.X, (int)ammunitionPosition.Y, 10, 25);
-
-                    // testing vector rectangle
-                    // var ammunitionRectangle = createRectangle(ammunitionPosition, 25, Color.PURPLE);
-                    // var ammunitionSize = new Vector2(25,25);
-                    // Raylib.DrawRectangleV(ammunitionPosition, ammunitionSize, Color.PURPLE);
-                    // Raylib.DrawRectangleV(buildingPosition, , Color.PURPLE);
-                    // Raylib.DrawRectangle((int)buildingPosition.X, (int)buildingPosition.Y, 30, 30, Color.PURPLE);
-
-
-                    
-                    // if (Raylib.CheckCollisionRecs(buildingRectangle, ammunitionRectangle)){
-                    //     foreach (var laser in ammunitionObjects){
-                    //         ammunitionObjects.Remove(laser);
-                    //         allObjects.Remove(laser);
-                    //     }
-                    // }
+                if (Raylib.CheckCollisionRecs(ammunitionRectangle, rowOneAlienRectangle)){
+                    ammoAndAlienCollisions(ammunitionObjects, alienObjects, allObjects);
+                }
+                if (Raylib.CheckCollisionRecs(ammunitionRectangle, rowTwoAlienRectangle)){
+                    ammoAndAlienCollisions(ammunitionObjects, alienObjects, allObjects);
+                }
+                if (Raylib.CheckCollisionRecs(ammunitionRectangle, rowThreeAlienRectangle)){
+                    ammoAndAlienCollisions(ammunitionObjects, alienObjects, allObjects);
+                }
+                if (Raylib.CheckCollisionRecs(ammunitionRectangle, rowFourAlienRectangle)){
+                    ammoAndAlienCollisions(ammunitionObjects, alienObjects, allObjects);
                 }
 
-
-                // function to create a rectangle/ parameters pass in the width and height
-                // build all the rectangles in the "foreach" loop, and then check all the conditions
-                // Rectangle createRectangle(int positionX, int positionY, int width, int height) {
-                //     var rectangle = new Rectangle(positionX, positionY, width, height);
-                //     Raylib.DrawRectangle(positionX, positionY, width, height, Color.PURPLE);
-                //     return rectangle;
-                // // }
-                // void createRectangle(Vector2 vectorPosition, Vector2 size, Color color) {
-                //     // var rectangle = new RectangleV(positionX, positionY, width, height);
-                //     Raylib.DrawRectangleV(vectorPosition, size, color);
-                //     // Raylib.DrawRectangleV(vectorPosition, size, Color.PURPLE);
-                    
-                // }
+                void ammoAndAlienCollisions(List<Actor> ammunitionObjects, List<Actor> alienObjects, List<Actor>allObjects){
+                    foreach (var obj in ammunitionObjects){
+                        allObjects.Remove(obj);
+                        ammunitionObjects.Remove(obj);
+                    }
+                    foreach (var obj in alienObjects){
+                        allObjects.Remove(obj);
+                        alienObjects.Remove(obj);
+                    }
+                }              
 
 
-
-                // iterate through each list in the allAliensList
-
-                // foreach (var lists in allObjects.ToList()){
-                //     foreach (var list in allAliensList.ToList()){
-                //     // build rectangles around aliens
-                //         foreach (var obj in list.ToList()){
-                //             var alienRectangles = new Rectangle(obj.Position.X, obj.Position.Y, 100, 100);
-                //         }
-                //     }
-
-                //     // build rectangles around the ammunitions
-                //     foreach (var obj in ammunitionObjects.ToList()){
-                //         var ammunitionRectangle = new Rectangle(ammunitionPosition.X - 1, ammunitionPosition.Y + 1, 10, 25);
-                //     }
-
-                //     // build rectangles around the buildings
-                //     foreach (var obj in buildingObjects.ToList()){
-                //         var buildingRectangle = new Rectangle(buildingPosition.X - 1, buildingPosition.Y + 1, 45, 45);
-                //     }
-
-                //     foreach ()
-                //     if (Raylib.CheckCollisionRecs(alienRectangles, ammunitionRectangle)){
-                //         var fire = true;
-                //     }
-
-
-                    // foreach (var obj in allObjects.ToList()){
-                    //     if (Raylib.CheckCollisionRecs(alienRectangles, ammunitionRectangle)){
-                    //         var fire = true;
-                    //     }
-                    // }
-                // }
                 
-                
-
-
-  
-
                 // Draw artillery (player)
                 Raylib.DrawText("W", (int)artilleryPosition.X, (int)artilleryPosition.Y, artillerySize, Color.DARKBLUE);  
                 Raylib.DrawText("V", (int)artilleryPosition.X, (int)artilleryPosition.Y, artillerySize, Color.GRAY);                 

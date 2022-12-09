@@ -18,7 +18,9 @@ namespace FinalProject.Game.Casting
         
         override public void Draw(){
             // Raylib.DrawText(Constants.ALIEN_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
+            // Raylib.DrawRectangle((int)Position.X, (int)Position.Y + 20, 50, 50, Color.BROWN);
             Raylib.DrawText("*", (int)Position.X, (int)Position.Y, Size, Color);
+            
         }
     }
 
@@ -53,7 +55,9 @@ namespace FinalProject.Game.Casting
         }
         override public void Draw(){
             // Raylib.DrawText(Constants.AMMUNITION_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
+            // Raylib.DrawRectangle((int)Position.X + 1, (int)Position.Y + 2, 5, 20, Color.PURPLE);
             Raylib.DrawText("I", (int)Position.X, (int)Position.Y, Size, Color);
+            
         }
     }
 
@@ -64,14 +68,16 @@ namespace FinalProject.Game.Casting
         public Building(Color color, int size, Rectangle rectangle): base(color, rectangle){
             Size = size;
         }
+        
         override public void Draw(){
             // Raylib.DrawText(Constants.BUILDING_IMAGE, (int)Position.X, (int)Position.Y, Size, Color);
+            // Raylib.DrawRectangle((int)Position.X, (int)Position.Y + 9, 63, 63, Color.GREEN);
+
             Raylib.DrawText("M", (int)Position.X, (int)Position.Y, Size, Color);
-            Raylib.DrawText("Y", (int)Position.X, (int)Position.Y, Size, Color);
+            Raylib.DrawText("/", (int)Position.X, (int)Position.Y, Size, Color);
+            Raylib.DrawText("\\", (int)Position.X, (int)Position.Y, Size, Color);
             Raylib.DrawText("T", (int)Position.X, (int)Position.Y, Size, Color);
-
-
-
+            
         }
     }
 

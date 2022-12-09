@@ -17,6 +17,12 @@ namespace FinalProject.Game.Casting
 
         public Vector2 Position { get; set; } = new Vector2(0,0);
         public Vector2 Velocity { get; set; } = new Vector2(0,0);
+
+        public Rectangle newRectangle { get; set; } = new Rectangle();
+
+        public bool isBuilding;
+        public bool isAmmunition;
+        public bool isAlien;
     
         // add a rectangle (for collisions)
         // virtual public Rectangle Rect() {
@@ -47,6 +53,7 @@ namespace FinalProject.Game.Casting
             Color = color;
             Rectangle = rectangle;
         }
+        
     }
     
 }
