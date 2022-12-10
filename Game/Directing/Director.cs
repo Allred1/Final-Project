@@ -37,7 +37,7 @@ namespace FinalProject.Game.Directing
             // configure buildings
             var buildingObjects = new List<Actor>();
             var buildingPosition = new Vector2(90, 525);
-            // var buildingRectangle = new Rectangle((int)buildingPosition.X, (int)buildingPosition.Y, 63, 63);
+            var buildingRectangle = new Rectangle((int)buildingPosition.X, (int)buildingPosition.Y, 63, 63);
             // var buildingRectangle = new Rectangle();
             var buildingCounter = 0;
             
@@ -73,7 +73,7 @@ namespace FinalProject.Game.Directing
                 // var rowFourAlienRectangle = new Rectangle(rowFourPosition.X, rowFourPosition.Y, 50, 50);
 
 
-                // var ammunitionRectangle = new Rectangle(artilleryPosition.X, ammunitionPosition.Y, 10, 25);
+                var ammunitionRectangle = new Rectangle(artilleryPosition.X, ammunitionPosition.Y, 10, 25);
                 // var ammunitionRectangle = new Rectangle();
 
 
@@ -145,7 +145,7 @@ namespace FinalProject.Game.Directing
                     building.Position = buildingPosition;
                     // building.Rectangle = buildingRectangle;
                     // building.Rectangle = new Rectangle((int)buildingPosition.X, (int)buildingPosition.Y, 63, 63);
-                    // building.Rectangle = buildingRectangle;
+                    building.Rectangle = buildingRectangle;
                     
                     buildingPosition.X += 200;
                     building.Velocity = new Vector2(0,0);
@@ -186,7 +186,7 @@ namespace FinalProject.Game.Directing
                     // ammunition.newRectangle = new Rectangle(artilleryPosition.X, ammunitionPosition.Y, 10, 25);
                     // var ammunitionNewRectangle = new Rectangle(())
                     // var ammunitionRectangle = new Rectangle(artilleryPosition.X, ammunitionPosition.Y, 10, 25);
-                    // ammunition.Rectangle = ammunitionRectangle;
+                    ammunition.Rectangle = ammunitionRectangle;
                     // ammunition.Rectangle = new Rectangle(artilleryPosition.X, ammunitionPosition.Y, 10, 25);
                     // ammunitionRectangle = ammunition.Rectangle;
                     ammunition.Velocity = new Vector2(0,-Constants.AMMUNITION_VELOCITY);
@@ -196,6 +196,7 @@ namespace FinalProject.Game.Directing
                     ammunitionObjects.Add(ammunition);
                     allObjects.Add(ammunition);
                 }
+                
 
              
 
@@ -209,7 +210,7 @@ namespace FinalProject.Game.Directing
                     foreach (var obj in buildingObjects.ToList()) {
                         obj.Draw();
                     }
-                    foreach (var obj in ammunitionObjects) {
+                    foreach (var obj in ammunitionObjects.ToList()) {
                         obj.Draw();
                     }
 
@@ -219,6 +220,7 @@ namespace FinalProject.Game.Directing
                     // }
                 }
                 DrawObjects();
+                
 
 
                 // end drawing
@@ -228,10 +230,10 @@ namespace FinalProject.Game.Directing
                 // Move the objects
                 void MoveObjects(){
                     // move positions of the objects
-                    foreach (var obj in alienObjects) {
+                    foreach (var obj in alienObjects.ToList()) {
                         obj.Move();
                     }
-                    foreach (var obj in ammunitionObjects) {
+                    foreach (var obj in ammunitionObjects.ToList()) {
                         obj.Move();
                     }
 
@@ -242,6 +244,14 @@ namespace FinalProject.Game.Directing
                 }
                 MoveObjects();
 
+                void removeAmmunition(){
+                    foreach (var obj in ammunitionObjects.ToList()){
+                        if (obj.Position == buildingPosition){
+                            ammunitionObjects.Remove(obj);
+                        }
+                    }
+                }
+
 
                 // Remove objects if they pass beyond a certain y-value
                 void removeObjects(){
@@ -249,10 +259,16 @@ namespace FinalProject.Game.Directing
                         if (obj.Position.Y >= 620) {
                             alienObjects.Remove(obj);
                         }
-                        if (obj.Position.Y <= -50) {
-                            ammunitionObjects.Remove(obj);
+                    }
+                    foreach (var laser in ammunitionObjects.ToList()){
+                        if (laser.Position.Y <= 100){
+                            ammunitionObjects.Remove(laser);
                         }
                     }
+                        // if (obj.Position.Y <= -50) {
+                        //     ammunitionObjects.Remove(obj);
+                        // }
+
                     // foreach (var obj in allObjects.ToList()) {
                     //     if (obj.Position.Y >= 620) {
                     //         allObjects.Remove(obj);
@@ -266,6 +282,19 @@ namespace FinalProject.Game.Directing
                     // }
                 }
                 removeObjects();
+                // foreach (var laser in ammunitionObjects.ToList()){
+                //     if (laser.Position.Y <= 400 && (laser.Position.X == buildingPosition.X)){
+                //         ammunitionObjects.Remove(laser);
+                //     }
+                // }
+
+                // if (ammunitionPosition == buildingPosition){
+                //     foreach (var bullet in ammunitionObjects.ToList()){
+                //         ammunitionObjects.Remove(bullet);
+                //     }
+                // }
+
+                
 
 
                 // handle collisions
@@ -290,41 +319,84 @@ namespace FinalProject.Game.Directing
                 // }
                 
 // ****************************Best Collision Handler I Got So Far--Still Doesn't Work Though******************************
-                foreach (var obj in allObjects.ToList()){
-                    var ammoRectangle = new Rectangle();
-                    var buildyRectangle = new Rectangle();
-                    var alienyRectangle = new Rectangle();
+                // foreach (var obj in allObjects.ToList()){
+                //     var ammoRectangle = new Rectangle();
+                //     var buildyRectangle = new Rectangle();
+                //     var alienyRectangle = new Rectangle();
 
-                    bool startCheckingCollisions = false;
+                //     bool startCheckingCollisions = false;
 
-                    if (obj.isAmmunition){
-                        ammoRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 10, 25);
-                        startCheckingCollisions = true;
-                    }
-                    if (obj.isBuilding){
-                        buildyRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 63, 63);
-                        startCheckingCollisions = true;
-                    }
-                    if (obj.isAlien){
-                        alienyRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 50, 50);
-                        startCheckingCollisions = true;
-                    }
+                //     if (obj.isAmmunition){
+                //         ammoRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 10, 25);
+                //         startCheckingCollisions = true;
+                //     }
+                //     if (obj.isBuilding){
+                //         buildyRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 63, 63);
+                //         startCheckingCollisions = true;
+                //     }
+                //     if (obj.isAlien){
+                //         alienyRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 50, 50);
+                //         startCheckingCollisions = true;
+                //     }
 
-                    if (startCheckingCollisions == true){
-                        if (Raylib.CheckCollisionRecs(ammoRectangle, buildyRectangle)){
-                        ammunitionObjects.Remove(obj);
-                        }
-                        if (Raylib.CheckCollisionRecs(ammoRectangle, alienyRectangle)){
-                        ammunitionObjects.Remove(obj);
-                        alienObjects.Remove(obj);
-                        }
-                    }
-                }
+                //     if (startCheckingCollisions == true){
+                //         if (Raylib.CheckCollisionRecs(ammoRectangle, buildyRectangle)){
+                //         ammunitionObjects.Remove(obj);
+                //         }
+                //         if (Raylib.CheckCollisionRecs(ammoRectangle, alienyRectangle)){
+                //         ammunitionObjects.Remove(obj);
+                //         alienObjects.Remove(obj);
+                //         }
+                //     }
+                // }
 //*****************************************************************************************************************
 /*
 best bet: create a function that takes the x & y coordinates of one object, then compare if that's equal to the x & y coordinates of the other object. If they're equal, then do whatever the collision is supposed to do. (Side note: may need to implement the area of each position in order to cover the whole object)
 
 */
+                removeAmmunition();
+
+                // bool compareCoordinates(float firstX, float firstY, float secondX, float secondY){
+                //     bool result = false;
+                //     if (firstX == secondX & firstY == secondY){
+                //         result = true;
+                //     }
+                //     return result;
+                // }
+                // bool compareCoordinates(Vector2 firstObject, Vector2 secondObject){
+                //     bool result = false;
+                //     if (firstObject == secondObject){
+                //         result = true;
+                //     }
+                //     return result;
+                // }
+                // if (compareCoordinates(ammunitionPosition, buildingPosition)){
+                //     foreach (var bullet in ammunitionObjects.ToList()){
+                //         ammunitionObjects.Remove(bullet);
+                //     }
+                // }
+                // else {
+                // }
+
+
+                if (Raylib.CheckCollisionRecs(ammunitionRectangle, buildingRectangle)){
+                    foreach (var obj in ammunitionObjects.ToList()){
+                        ammunitionObjects.Remove(obj);
+                    }
+                }
+
+
+
+
+
+                // funtion compares 2 objects' x & y coordinates, returns true if they're the same
+                // now: pass the stuff into it
+                // if (compareCoordinates((ammunitionPosition.X + 10), (ammunitionPosition.Y + 25), (buildingPosition.X + 63), (buildingPosition.Y + 63))){
+                //     foreach (var bullet in ammunitionObjects.ToList()){
+                //         ammunitionObjects.Remove(bullet);
+                //     }
+                //     // foreach (var building in buildingObjects)
+                // };
 
                 // foreach (var obj in allObjects.ToList()){
                 //     // var ammoRectangle = new Rectangle();
