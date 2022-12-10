@@ -152,7 +152,7 @@ namespace FinalProject.Game.Directing
                     // identify what it is and isn't
                     building.isBuilding = true;
                     building.isAlien = false;
-                    building.isAmmunition = false;
+                    building.isAmmunition = true;
                     buildingObjects.Add(building);
                     allObjects.Add(building);
                     buildingCounter += 1;
@@ -209,7 +209,7 @@ namespace FinalProject.Game.Directing
                     foreach (var obj in buildingObjects.ToList()) {
                         obj.Draw();
                     }
-                    foreach (var obj in ammunitionObjects.ToList()) {
+                    foreach (var obj in ammunitionObjects) {
                         obj.Draw();
                     }
 
@@ -289,24 +289,24 @@ namespace FinalProject.Game.Directing
                 //     }
                 // }
                 
-                // var ammunitionRectangleTrying = new Rectangle(buildingPosition.X, buildingPosition.Y, 50,50);
+// ****************************Best Collision Handler I Got So Far--Still Doesn't Work Though******************************
                 foreach (var obj in allObjects.ToList()){
-                    // var ammoRectangle = new Rectangle();
-                    // var buildyRectangle = new Rectangle();
-                    // var alienyRectangle = new Rectangle();
+                    var ammoRectangle = new Rectangle();
+                    var buildyRectangle = new Rectangle();
+                    var alienyRectangle = new Rectangle();
 
                     bool startCheckingCollisions = false;
 
                     if (obj.isAmmunition){
-                        var ammoRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 10, 25);
+                        ammoRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 10, 25);
                         startCheckingCollisions = true;
                     }
                     if (obj.isBuilding){
-                        var buildyRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 63, 63);
+                        buildyRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 63, 63);
                         startCheckingCollisions = true;
                     }
                     if (obj.isAlien){
-                        var alienyRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 50, 50);
+                        alienyRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 50, 50);
                         startCheckingCollisions = true;
                     }
 
@@ -320,6 +320,61 @@ namespace FinalProject.Game.Directing
                         }
                     }
                 }
+//*****************************************************************************************************************
+/*
+best bet: create a function that takes the x & y coordinates of one object, then compare if that's equal to the x & y coordinates of the other object. If they're equal, then do whatever the collision is supposed to do. (Side note: may need to implement the area of each position in order to cover the whole object)
+
+*/
+
+                // foreach (var obj in allObjects.ToList()){
+                //     // var ammoRectangle = new Rectangle();
+                //     // var buildyRectangle = new Rectangle();
+                //     // var alienyRectangle = new Rectangle();
+
+                //     // bool startCheckingCollisions = false;
+
+                //     // if ammunition or building (both objects marked "true" for isAmmunition)
+                //     if (obj.isAmmunition){
+                //         // create ammo rectangle
+                //         var ammoRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 10, 25);
+                //         // if building (only building marked "true" for this)
+                //         if (obj.isBuilding){
+                //             // create building rectangle
+                //             var buildyRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 63, 63);
+                //             // check collisions between ammo & buildings
+                //             if (Raylib.CheckCollisionRecs(ammoRectangle, buildyRectangle)){
+                //                 // remove ammo
+                //                 ammunitionObjects.Remove(obj);
+                //             }
+                //             // if (obj.isAlien){
+                //             //     var alienyRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 50, 50);
+                //             //     if (Raylib.CheckCollisionRecs(ammoRectangle, alienyRectangle)){
+                //             //         ammunitionObjects.Remove(obj);
+                //             //         alienObjects.Remove(obj);
+                //             //     }
+                //             // }  
+                //         }
+                //         // startCheckingCollisions = true;
+                //     }
+                //     // if (obj.isBuilding){
+                //     //     buildyRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 63, 63);
+                //     //     startCheckingCollisions = true;
+                //     // }
+                //     // if (obj.isAlien){
+                //     //     alienyRectangle = new Rectangle(obj.Position.X, obj.Position.Y, 50, 50);
+                //     //     startCheckingCollisions = true;
+                //     // }
+
+                //     // if (startCheckingCollisions == true){
+                //     //     if (Raylib.CheckCollisionRecs(ammoRectangle, buildyRectangle)){
+                //     //     ammunitionObjects.Remove(obj);
+                //     //     }
+                //     //     if (Raylib.CheckCollisionRecs(ammoRectangle, alienyRectangle)){
+                //     //     ammunitionObjects.Remove(obj);
+                //     //     alienObjects.Remove(obj);
+                //     //     }
+                //     // }
+                // }
                     
                     
 
